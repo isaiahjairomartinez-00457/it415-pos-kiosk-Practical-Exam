@@ -119,7 +119,7 @@ export function InasalLogo({ size = 44, className = "" }: { size?: number; class
       fill="none"
       className={className}
       role="img"
-      aria-label="MANG INASAL original chicken logo"
+      aria-label="Mang Kanor Inasal restaurant mark"
     >
       <circle cx="32" cy="32" r="29" fill="currentColor" opacity=".14" />
       <path d="M18 38c0-9 7-16 16-16 6 0 11 3 14 8-4 1-7 4-9 8-4 7-13 9-21 4z" fill="#F4C542" />

@@ -21,8 +21,8 @@ export function Header({ current, completed }: HeaderProps) {
             <InasalLogo size={42} />
           </div>
           <div className="leading-tight">
-            <p className="text-lg font-extrabold tracking-tight">MANG INASAL</p>
-            <p className="text-sm text-slate-300">Grilled favorites, ready to order</p>
+            <p className="text-lg font-extrabold tracking-tight">MANG KANOR INASAL</p>
+            <p className="text-sm text-slate-300">Flame-grilled favorites, ready to order</p>
           </div>
         </div>
 

@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "MANG INASAL – Self-Service Kiosk",
-  description: "MANG INASAL-inspired touchscreen self-service restaurant kiosk.",
+  title: "Mang Kanor Inasal – Self-Service Kiosk",
+  description: "Mang Kanor Inasal touchscreen self-service restaurant kiosk.",
 };
 
 export const viewport: Viewport = {

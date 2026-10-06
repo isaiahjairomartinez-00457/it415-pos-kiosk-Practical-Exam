@@ -1,7 +1,6 @@
 import { OrderPanel } from "@/components/OrderPanel";
 import { MenuSidebar } from "@/components/MenuSidebar";
 import { ProductCard } from "@/components/ProductCard";
-import { CATEGORIES } from "@/lib/constants";
 import type { CartLine, ProductDTO } from "@/types";
 
 interface OrderScreenProps {
@@ -26,27 +25,12 @@ export function OrderScreen({ products, items, category, onCategory, onAdd, ...p
       <section aria-labelledby="catalog-heading" className="flex min-h-0 flex-col lg:overflow-y-auto lg:pr-1">
         <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
           <div>
-            <p className="mb-1 text-sm font-bold uppercase tracking-[0.16em] text-accent-dark">MANG INASAL MENU</p>
+            <p className="mb-1 text-sm font-bold uppercase tracking-[0.16em] text-accent-dark">MANG KANOR INASAL MENU</p>
             <h1 id="catalog-heading" className="text-3xl font-extrabold tracking-tight">Choose your favorites</h1>
           </div>
-          <div role="group" aria-label="Filter by category" className="flex flex-wrap gap-2">
-            {CATEGORIES.map((name) => {
-              const active = name === category;
-              return (
-                <button
-                  key={name}
-                  type="button"
-                  onClick={() => onCategory(name)}
-                  aria-pressed={active}
-                  className={`min-h-[56px] rounded-full border-2 px-6 text-base font-bold transition duration-150 active:scale-95 ${
-                    active ? "border-highlight bg-highlight text-ink shadow-md" : "border-line bg-cream text-ink shadow-sm hover:border-accent hover:bg-[#fff1d0]"
-                  }`}
-                >
-                  {name}
-                </button>
-              );
-            })}
-          </div>
+          <p className="rounded-full bg-accent-soft px-4 py-2 text-sm font-bold text-accent-dark">
+            {visible.length} {visible.length === 1 ? "item" : "items"} available
+          </p>
         </div>
 
         <ul className="product-grid grid grid-cols-2 gap-4 pb-2 md:grid-cols-3" data-testid="product-grid">

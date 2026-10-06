@@ -28,7 +28,7 @@ export function ProductCard({ product, quantity, onAdd }: ProductCardProps) {
       aria-label={`Add ${product.name}, ${formatMoney(product.price)}${
         selected ? `. ${quantity} in your order` : ""
       }`}
-        className={`product-card group relative flex min-h-[56px] flex-col rounded-card border-2 bg-white p-3 text-left shadow-card transition duration-150 ease-out hover:-translate-y-1 hover:shadow-pop active:scale-[0.97] active:shadow-none ${
+        className={`product-card group relative flex min-h-[300px] flex-col rounded-card border-2 bg-white p-4 text-left shadow-card transition duration-150 ease-out hover:-translate-y-1 hover:shadow-pop active:scale-[0.97] active:shadow-none ${
         selected ? "border-highlight ring-2 ring-highlight/30" : "border-line hover:border-accent"
       }`}
     >
@@ -60,10 +60,13 @@ export function ProductCard({ product, quantity, onAdd }: ProductCardProps) {
         </span>
       )}
 
-      <span className="mt-3 flex flex-col px-1">
+      <span className="mt-3 flex flex-1 flex-col px-1">
         <span className="text-lg font-bold leading-tight">{product.name}</span>
         <span className="text-sm text-ink-muted">{product.category}</span>
         <span className="mt-1 text-xl font-extrabold text-accent">{formatMoney(product.price)}</span>
+        <span className="mt-3 inline-flex min-h-[52px] items-center justify-center rounded-xl bg-accent px-4 text-base font-extrabold text-white shadow-sm transition group-hover:bg-accent-dark group-active:scale-95">
+          {selected ? "Add another" : "Add to order"}
+        </span>
       </span>
 
       {selected && <span className="sr-only">Selected, quantity {quantity}</span>}
