@@ -1,0 +1,425 @@
+# IT415 POS Kiosk System
+
+A touchscreen-oriented Point-of-Sale (POS) Kiosk System developed for the IT415 Practical Examination. The system is designed to provide a simple, fast, and user-friendly self-service ordering experience for a restaurant environment.
+
+## Project Overview
+
+The IT415 POS Kiosk System is a web-based self-service restaurant ordering application designed for touchscreen kiosk displays.
+
+The system allows customers to:
+
+- Browse restaurant products by category
+- View product images, names, and prices
+- Select products using large touchscreen-friendly cards
+- Add products to an order
+- Increase or decrease item quantities
+- Remove items from the order
+- Review the complete order
+- Edit the order before payment
+- Select a payment method
+- Process simulated cash, QR, and card payments
+- Validate insufficient cash payments
+- Calculate the correct change
+- Generate a unique transaction reference
+- Display a transaction receipt
+- Start a new transaction
+
+The interface uses a restaurant-inspired green theme and a landscape-oriented kiosk layout to provide a clear and accessible touchscreen ordering experience.
+
+## Main Features
+
+### Product Menu
+
+- Category-based product navigation
+- Large touchscreen-friendly product cards
+- Product images
+- Product names and prices
+- Add to Order actions
+- Visual feedback for selected products
+- Quantity indicators
+
+### Order Management
+
+- View selected products
+- Increase product quantity
+- Decrease product quantity
+- Remove products
+- Automatic subtotal calculation
+- Automatic total calculation
+- Clear order summary
+
+### Order Review
+
+Customers can:
+
+- Review selected products
+- Check quantities
+- Check the total amount
+- Return to the menu
+- Edit the order
+- Continue to payment
+
+### Payment Methods
+
+The system supports three simulated payment methods:
+
+1. Cash
+2. QR Payment
+3. Card Payment
+
+#### Cash Payment
+
+The cash payment process includes:
+
+- Entering the amount paid
+- Validating the payment amount
+- Rejecting insufficient cash
+- Calculating the correct change
+- Confirming successful payment
+
+#### QR Payment
+
+QR payment is simulated for the practical examination.
+
+#### Card Payment
+
+Card payment is simulated for the practical examination.
+
+No real financial transaction is performed by the application.
+
+### Transaction and Receipt
+
+After successful payment, the system generates a transaction containing:
+
+- Unique transaction reference
+- Ordered products
+- Product quantities
+- Unit prices
+- Subtotals
+- Total amount
+- Payment method
+- Amount paid
+- Change amount when applicable
+- Transaction status
+- Transaction date and time
+
+A receipt screen displays the completed transaction.
+
+### New Transaction
+
+After completing an order, the customer can start a new transaction. The current order is cleared so another customer can use the kiosk.
+
+## UI/UX Design
+
+The application was designed specifically for touchscreen kiosk environments.
+
+### UI/UX Improvements
+
+- Restaurant-inspired green theme
+- Mang Kanor Inasal branding
+- Large touchscreen-friendly product cards
+- Clear Add to Order buttons
+- Visual feedback for selected products
+- Category sidebar navigation
+- Landscape kiosk layout
+- Improved order summary presentation
+- Touch interaction feedback
+- Accessible labels and focus states
+- Improved visual hierarchy
+- Consistent restaurant branding
+- Clear navigation between ordering stages
+
+The design prioritizes large interactive elements, readable information, clear navigation, and minimal unnecessary interaction steps.
+
+## Technology Stack
+
+### Frontend
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS / CSS
+
+### Development Tools
+
+- Node.js
+- npm
+- Git
+- GitHub
+- Visual Studio Code
+
+### Data Storage
+
+The current practical-exam implementation uses a local JSON data store:
+
+```text
+data/kiosk.json
+
+Project Structure
+
+it415-pos-kiosk-Practical-Exam/
+│
+├── app/
+│   └── layout.tsx
+│
+├── components/
+│   ├── Header.tsx
+│   ├── MenuSidebar.tsx
+│   ├── OrderScreen.tsx
+│   ├── ProductCard.tsx
+│   ├── OrderPanel.tsx
+│   ├── ReceiptScreen.tsx
+│   └── icons.tsx
+│
+├── data/
+│   └── kiosk.json
+│
+├── public/
+│   └── ...
+│
+├── AI_LOG.md
+├── package.json
+├── package-lock.json
+└── README.md
+
+Requirements
+node --version
+npm --version
+git --version
+
+Installation
+Clone the repository:
+git clone https://github.com/isaiahjairomartinez-00457/it415-pos-kiosk-Practical-Exam.git
+
+Navigate to the project directory:
+cd it415-pos-kiosk-Practical-Exam
+
+Install the project dependencies:
+npm install
+
+Running the Application
+Start the development server:
+npm run dev
+
+After the server starts, open the local URL displayed in the terminal.
+The default Next.js development URL is usually:
+http://localhost:3000
+
+Validation and Testing
+The following commands can be used to validate the project.
+Type Checking
+npm run typecheck
+
+Linting
+npm run lint
+
+Tests
+npm test
+
+Production Build
+npm run build
+
+These commands help verify that the application code is valid, passes the available tests, follows the project's coding standards, and can successfully build for production.
+POS Workflow
+Product Menu
+     ↓
+Select Product
+     ↓
+Add to Order
+     ↓
+Manage Quantity
+     ↓
+Order Summary
+     ↓
+Review Order
+     ↓
+Select Payment Method
+     ↓
+Payment Validation
+     ↓
+Successful Payment
+     ↓
+Transaction Reference
+     ↓
+Receipt
+     ↓
+New Transaction
+
+Acceptance and Functional Validation
+The system was developed and tested against the required POS kiosk workflow.
+The following functions are supported:
+- Application startup
+- Touchscreen-oriented interface
+- Large product buttons and cards
+- Multiple products
+- Product prices
+- Product selection
+- Quantity increase
+- Quantity decrease
+- Item removal
+- Subtotal calculation
+- Total calculation
+- Order summary
+- Back/Edit Order functionality
+- Cash payment
+- Insufficient cash validation
+- Correct change calculation
+- QR payment simulation
+- Card payment simulation
+- Successful payment
+- Unique transaction reference
+- Receipt generation
+- Correct receipt details
+- Payment method display
+- New transaction reset
+- Meaningful user feedback
+Git and GitHub Workflow
+The project uses Git and GitHub for source control and team collaboration.
+Development work is organized using feature branches before being integrated into the main branch.
+The general workflow is:
+main
+ │
+ ├── feature/member-task
+ │       │
+ │       ├── Development
+ │       ├── Testing
+ │       ├── Commit
+ │       └── Push
+ │
+ └── Pull Request
+         │
+         ├── Code Review
+         ├── Approval
+         └── Merge
+                ↓
+               main
+
+Pull Request Process
+1. Create a feature branch.
+2. Implement the assigned task.
+3. Test the changes.
+4. Commit the changes using meaningful commit messages.
+5. Push the feature branch to GitHub.
+6. Create a Pull Request targeting main.
+7. Have another team member review the changes.
+8. Address review feedback when necessary.
+9. Merge the approved Pull Request into main.
+This workflow provides an organized development process and evidence of individual contributions.
+Team Members and Contributions
+Michael Angelo Acera
+Role: Programmer / UI/UX Developer
+Contributions:
+- POS kiosk UI/UX development
+- Touchscreen-oriented interface
+- Restaurant branding and visual design
+- Product card interface
+- Category sidebar navigation
+- Order summary presentation
+- Touch interaction feedback
+- Accessibility improvements
+- UI testing and validation
+GitHub Branch:
+feature/michael-ui-ux
+
+Pull Request:
+PR #1
+
+The UI/UX changes were reviewed and merged into the main branch.
+Isaiah Jairo C. Martinez
+Role: Project Manager / Team Lead
+Contributions:
+- Project coordination
+- Repository management
+- System integration
+- Development coordination
+- Overall project management
+Angela Faiht N. Misoles
+Role: Team Member
+Contributions:
+- Assigned project development tasks
+- Testing and validation support
+- Documentation support
+- Project implementation support
+Cyril Dwyne R. Pasa
+Role: System Analyst
+Contributions:
+- Requirements analysis
+- System analysis
+- System design support
+- Documentation
+- Requirements and workflow analysis
+AI-Assisted Development
+AI tools were used as development assistance during the project.
+AI assistance was used for:
+- UI/UX improvement suggestions
+- Code generation assistance
+- Debugging assistance
+- Refactoring suggestions
+- Development guidance
+- Testing and validation assistance
+AI-generated output was reviewed and evaluated by the developer before being incorporated into the project.
+Developers were responsible for:
+- Reviewing generated code
+- Checking whether the output matched project requirements
+- Modifying generated output when necessary
+- Testing the resulting implementation
+- Verifying that existing functionality was preserved
+Detailed AI prompts, responses, evaluations, and modifications are documented in:
+AI_LOG.md
+
+AI assistance was used as a development aid and did not replace developer review or decision-making.
+Testing
+The system was tested through the major POS workflow.
+Product Testing
+- Product selection
+- Product display
+- Product pricing
+- Category navigation
+- Add to Order interaction
+Order Testing
+- Quantity increase
+- Quantity decrease
+- Product removal
+- Subtotal calculation
+- Total calculation
+- Order review
+- Editing an order
+Payment Testing
+- Cash payment
+- Insufficient cash validation
+- Change calculation
+- QR payment simulation
+- Card payment simulation
+- Successful payment
+Transaction Testing
+- Transaction reference generation
+- Receipt generation
+- Receipt information
+- Payment method information
+- New transaction reset
+Development Validation
+The project was validated using:
+npm run typecheck
+npm run lint
+npm test
+npm run build
+
+Scope and Limitations
+This project was developed as part of the IT415 Practical Examination.
+The payment methods included in the system are simulated and are not connected to real payment gateways, banks, credit/debit card services, or financial institutions.
+The application is intended as an academic demonstration of a functional restaurant POS kiosk workflow.
+Repository
+GitHub Repository:
+https://github.com/isaiahjairomartinez-00457/it415-pos-kiosk-Practical-Exam
+Project Team
+Member	Role
+Michael Angelo Acera	Programmer / UI/UX Developer
+Isaiah Jairo C. Martinez	Project Manager / Team Lead
+Angela Faiht N. Misoles	Team Member
+Cyril Dwyne R. Pasa	System Analyst
+
+
+Academic Project
+This project was developed for the IT415 Practical Examination.
+The system demonstrates the team's ability to develop, test, document, and collaborate on a functional touchscreen-oriented POS kiosk application using modern web development technologies and GitHub-based version control.
+
