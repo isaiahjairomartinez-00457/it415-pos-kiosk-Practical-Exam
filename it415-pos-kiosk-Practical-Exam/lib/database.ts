@@ -2,7 +2,11 @@ import { promises as fs } from "fs";
 import path from "path";
 import type { CheckoutRequest, PaymentMethod, ProductDTO, Receipt } from "@/types";
 
-const DATA_PATH = path.join(process.cwd(), "data", "kiosk.json");
+const IS_VERCEL = process.env.VERCEL === "1";
+const DATA_PATH = IS_VERCEL
+  ? path.join("/tmp", "kiosk.json")
+  : path.join(process.cwd(), "data", "kiosk.json");
+const INITIAL_DATA_PATH = path.join(process.cwd(), "data", "kiosk.json");
 
 interface StoredProduct {
   id: number;
@@ -61,7 +65,17 @@ function withLock<T>(fn: () => Promise<T>): Promise<T> {
 }
 
 async function readDatabase(): Promise<KioskDatabase> {
-  const raw = await fs.readFile(DATA_PATH, "utf8");
+  let raw: string;
+  try {
+    raw = await fs.readFile(DATA_PATH, "utf8");
+  } catch (error: any) {
+    if (error.code === "ENOENT" && IS_VERCEL) {
+      raw = await fs.readFile(INITIAL_DATA_PATH, "utf8");
+    } else {
+      throw error;
+    }
+  }
+  
   const parsed = JSON.parse(raw) as KioskDatabase;
   return {
     products: Array.isArray(parsed.products) ? parsed.products : [],

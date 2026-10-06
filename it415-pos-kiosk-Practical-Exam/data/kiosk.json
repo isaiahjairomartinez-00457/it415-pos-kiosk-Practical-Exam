@@ -92,9 +92,51 @@
           "subtotal": 6000
         }
       ]
+    },
+    {
+      "id": 3,
+      "transactionNumber": "TXN-2026-00003",
+      "idempotencyKey": "e968395b-d761-414b-9e43-651d540f5118",
+      "totalAmount": 9900,
+      "paymentMethod": "CASH",
+      "amountPaid": 9900,
+      "changeAmount": 0,
+      "status": "SUCCESS",
+      "createdAt": "2026-10-06T19:32:25.036Z",
+      "items": [
+        {
+          "id": 1,
+          "productId": 1,
+          "productName": "Chicken Inasal",
+          "quantity": 1,
+          "unitPrice": 9900,
+          "subtotal": 9900
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "transactionNumber": "TXN-2026-00004",
+      "idempotencyKey": "06c44b92-718a-43ae-9576-5e4dd8986cc3",
+      "totalAmount": 9900,
+      "paymentMethod": "QR",
+      "amountPaid": 9900,
+      "changeAmount": 0,
+      "status": "SUCCESS",
+      "createdAt": "2026-10-06T19:33:32.285Z",
+      "items": [
+        {
+          "id": 1,
+          "productId": 1,
+          "productName": "Chicken Inasal",
+          "quantity": 1,
+          "unitPrice": 9900,
+          "subtotal": 9900
+        }
+      ]
     }
   ],
   "yearCounters": {
-    "2026": 2
+    "2026": 4
   }
 }
