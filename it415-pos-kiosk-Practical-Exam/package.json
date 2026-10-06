@@ -2,7 +2,7 @@
   "name": "it415-pos-kiosk-practical-exam",
   "version": "1.0.0",
   "private": true,
-  "description": "MANG INASAL-inspired Self-Service POS Kiosk (IT415 Practical Examination)",
+  "description": "Mang Kanor Inasal Self-Service POS Kiosk (IT415 Practical Examination)",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

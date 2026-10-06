@@ -29,7 +29,7 @@ export function ReceiptScreen({ receipt, onNewTransaction }: ReceiptScreenProps)
         data-testid="receipt"
       >
         <header className="border-b-2 border-dashed border-slate-300 pb-4 text-center">
-          <h1 id="receipt-heading" className="text-2xl font-extrabold tracking-wide">MANG INASAL</h1>
+          <h1 id="receipt-heading" className="text-2xl font-extrabold tracking-wide">MANG KANOR INASAL</h1>
           <p className="text-ink-muted">Official Digital Receipt</p>
         </header>
 

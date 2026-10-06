@@ -43,7 +43,7 @@ export function MenuSidebar({ activeCategory, onCategory }: MenuSidebarProps) {
         <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent text-sm font-black text-white ring-2 ring-highlight">
           <InasalLogo size={38} />
         </div>
-        <p className="mt-3 text-sm font-black uppercase tracking-[0.12em] text-accent-dark">MANG INASAL</p>
+        <p className="mt-3 text-sm font-black uppercase tracking-[0.12em] text-accent-dark">MANG KANOR INASAL</p>
         <p className="mt-1 text-xs font-semibold text-ink-muted">Self-Service Kiosk</p>
       </div>
 
