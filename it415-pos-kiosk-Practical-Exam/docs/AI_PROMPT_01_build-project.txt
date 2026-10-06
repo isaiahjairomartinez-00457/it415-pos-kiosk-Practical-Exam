@@ -1,0 +1,1261 @@
+You are a Senior Full-Stack Engineer, Next.js Developer, Prisma/MySQL Database Engineer, UI/UX Designer, QA Engineer, and DevOps Engineer. BUILD THE COMPLETE WORKING IT415 TOUCHSCREEN POS KIOSK PROJECT from start to finish. Do not only give me code snippets or instructions. Actually create all project files, implement all features, test the application, fix errors, and finally package the complete project into ONE ZIP FILE named `it415-pos-kiosk-Practical-Exam.zip`. Do not stop until the ZIP file actually exists and is ready for download.
+
+PROJECT:
+IT415 Touchscreen POS Kiosk
+Application name: Campus Store – Self-Service Kiosk
+Repository name: it415-pos-kiosk-Practical-Exam
+
+DEVELOPERS:
+1. Michael Angelo Acera
+2. Isaiah Jairo C. Martinez
+3. Cyril Dwyne R. Pasa
+4. Angela Faiht N. Misoles
+
+Do not invent GitHub usernames, commits, branches, pull requests, reviews, or individual contributions. If unknown, use TBD.
+
+TECHNOLOGY STACK — MUST USE:
+- Next.js with App Router
+- TypeScript
+- React through Next.js
+- JavaScript/TypeScript for UI interactions and animations
+- Tailwind CSS and/or clean CSS
+- Prisma ORM
+- MySQL
+- XAMPP for local MySQL
+- Vercel-ready architecture
+
+DO NOT USE:
+- PHP
+- Firebase
+- MongoDB
+- PostgreSQL
+- Express
+- Laravel
+- Django
+- jQuery
+- Bootstrap
+- Angular
+- Vue
+- unnecessary backend frameworks
+- unnecessary animation libraries
+
+IMPORTANT DATABASE REQUIREMENT:
+The local database must be MySQL running through XAMPP.
+
+Architecture for local/practical exam:
+
+Browser
+↓
+Next.js
+↓
+Server Actions / Route Handlers
+↓
+Prisma
+↓
+MySQL through XAMPP
+
+The browser MUST NEVER connect directly to MySQL.
+
+Use environment variables. Create `.env.example` containing:
+
+DATABASE_URL="mysql://root:@localhost:3306/it415_pos_kiosk"
+
+Never commit `.env`, `.env.local`, credentials, passwords, or secrets.
+
+IMPORTANT VERCEL LIMITATION:
+Local XAMPP MySQL cannot be accessed directly by a Vercel deployment because Vercel cannot connect to localhost or 127.0.0.1 on my computer.
+
+Therefore, make the database configuration environment-based:
+
+LOCAL:
+Next.js → Prisma → XAMPP MySQL
+
+VERCEL:
+Next.js → Prisma → publicly accessible MySQL-compatible database
+
+Do not falsely claim that Vercel can directly use local XAMPP MySQL. The README must clearly explain this. The application should only require changing `DATABASE_URL` when moving from local XAMPP to a hosted database.
+
+DATABASE NAME:
+`it415_pos_kiosk`
+
+DATABASE:
+MySQL
+
+ORM:
+Prisma
+
+CREATE THIS PROJECT STRUCTURE OR A BETTER CLEAN EQUIVALENT:
+
+app/
+components/
+lib/
+prisma/
+public/
+types/
+README.md
+AI_LOG.md
+.env.example
+.gitignore
+package.json
+tsconfig.json
+next.config.ts
+
+Use a clean, maintainable architecture. Do not overengineer.
+
+==================================================
+DATABASE
+==================================================
+
+Use Prisma with MySQL.
+
+Create these models:
+
+PRODUCT:
+- id
+- name
+- price
+- category
+- icon
+- createdAt
+- updatedAt
+
+TRANSACTION:
+- id
+- transactionNumber
+- totalAmount
+- paymentMethod
+- amountPaid
+- changeAmount
+- status
+- createdAt
+
+TRANSACTION ITEM:
+- id
+- transactionId
+- productId
+- productName
+- quantity
+- unitPrice
+- subtotal
+
+Relationships:
+Transaction 1 → many TransactionItems
+Product 1 → many TransactionItems
+
+TransactionItem MUST store the product name and unit price at the time of purchase so historical receipts remain correct if a product price changes later.
+
+Use Prisma transactions for checkout.
+
+The server MUST NEVER trust client-provided prices, subtotals, or totals.
+
+During checkout:
+1. Receive product IDs and quantities.
+2. Validate the request.
+3. Fetch products from MySQL.
+4. Verify every product exists.
+5. Validate quantities.
+6. Ensure quantity is between 1 and 99.
+7. Read prices from the database.
+8. Recalculate each subtotal.
+9. Recalculate the total.
+10. Validate payment method.
+11. Validate amount paid.
+12. Calculate change.
+13. Generate a unique transaction number.
+14. Create the transaction.
+15. Create transaction items.
+16. Commit everything atomically.
+
+If anything fails, roll back.
+
+A failed or insufficient payment MUST NOT create a transaction or transaction items.
+
+==================================================
+MONEY
+==================================================
+
+Use integer centavos internally.
+
+Examples:
+₱45.00 = 4500
+₱50.00 = 5000
+₱175.00 = 17500
+
+Never rely on floating-point arithmetic for money.
+
+Create a reusable `formatMoney()` function.
+
+Example:
+formatMoney(4500) → ₱45.00
+
+Use consistent money formatting throughout the application.
+
+==================================================
+PRODUCTS
+==================================================
+
+Seed exactly these six products:
+
+1. Coffee — ₱45 — Drinks
+2. Sandwich — ₱50 — Food
+3. Soft Drink — ₱35 — Drinks
+4. Cookies — ₱25 — Snacks
+5. Bottled Water — ₱20 — Drinks
+6. Chocolate — ₱25 — Snacks
+
+Create `prisma/seed.ts`.
+
+The seed must be safe to run more than once without creating duplicate products.
+
+Use inline SVG icons rather than external image URLs.
+
+Suggested icons:
+Coffee → coffee cup
+Sandwich → sandwich
+Soft Drink → drink cup
+Cookies → cookie
+Bottled Water → bottle
+Chocolate → chocolate bar
+
+==================================================
+UI/UX DESIGN
+==================================================
+
+Create a modern 2026 self-service touchscreen kiosk.
+
+The design MUST be:
+- modern
+- minimalist
+- premium
+- clean
+- professional
+- friendly
+- spacious
+- easy to understand
+- touchscreen optimized
+- responsive
+- fast
+- visually polished
+
+Do NOT make it look like an old school project, generic admin dashboard, old Bootstrap website, or overly complicated application.
+
+Use this visual direction:
+
+- Dark navy header
+- Warm orange primary accent
+- Off-white/light background
+- White cards
+- Subtle borders
+- Soft shadows
+- Large typography
+- Generous spacing
+- Moderate rounded corners
+
+Avoid excessive:
+- gradients
+- glassmorphism
+- decorative graphics
+- animations
+- shadows
+- colors
+
+The interface should feel like a real self-service kiosk.
+
+==================================================
+HEADER
+==================================================
+
+Create a polished kiosk header showing:
+
+CS
+Campus Store
+Self-service kiosk
+
+Also show the current step.
+
+==================================================
+STEP INDICATOR
+==================================================
+
+Steps:
+
+1. Order
+2. Review
+3. Payment
+4. Receipt
+
+Current step:
+Clearly highlighted.
+
+Completed step:
+Show a check mark.
+
+Future steps:
+Muted.
+
+Animate step changes subtly.
+
+==================================================
+SCREEN 1 — PRODUCT SELECTION
+==================================================
+
+Create the main ordering screen.
+
+Desktop/tablet layout:
+
+LEFT:
+Product catalog
+
+RIGHT:
+Your Order panel
+
+Product filters:
+
+All
+Drinks
+Food
+Snacks
+
+Product cards must display:
+- icon
+- product name
+- category
+- price
+- selected quantity if applicable
+- selected state
+
+Tapping a product adds one quantity.
+
+Show a subtle toast such as:
+
+"Coffee added to your order"
+
+The product card must have touch feedback.
+
+==================================================
+ORDER PANEL
+==================================================
+
+Title:
+
+Your Order
+
+Each cart item shows:
+- product name
+- unit price
+- minus button
+- quantity
+- plus button
+- subtotal
+- remove button
+
+Show:
+Items: X
+
+Show:
+Total: ₱0.00
+
+Primary button:
+
+Proceed to Review
+
+Disable it if the cart is empty.
+
+Empty state:
+
+Your cart is empty.
+Add products to begin your order.
+
+==================================================
+QUANTITY
+==================================================
+
+Minimum:
+1
+
+Maximum:
+99
+
+Never allow negative quantities.
+
+If quantity reaches 0 through decrement, remove the item.
+
+If user tries to exceed 99:
+
+Show:
+
+"Maximum quantity is 99."
+
+Use accessible error/toast feedback.
+
+==================================================
+SCREEN 2 — REVIEW
+==================================================
+
+Title:
+
+Review Your Order
+
+Display:
+Product
+Quantity
+Unit Price
+Subtotal
+
+Show total amount.
+
+Buttons:
+Back
+Continue to Payment
+
+Back MUST preserve the cart.
+
+==================================================
+SCREEN 3 — PAYMENT
+==================================================
+
+Title:
+
+Payment Method
+
+Show:
+
+Amount Due: ₱0.00
+
+Three large payment options:
+
+Cash
+QR Payment
+Credit/Debit Card
+
+Also provide:
+
+Back to Order
+
+Selecting a payment method must NOT create a database transaction.
+
+==================================================
+CASH PAYMENT
+==================================================
+
+Display:
+
+Amount Due
+Amount Paid
+Change
+
+Create a large touchscreen keypad:
+
+1 2 3
+4 5 6
+7 8 9
+Clear 0 Backspace
+
+Quick buttons:
+
+Exact
+₱200
+₱500
+₱1,000
+
+Buttons:
+
+Pay Now
+Change Payment Method
+
+Update amount paid and change live using JavaScript/TypeScript.
+
+Reject:
+- blank
+- zero
+- negative
+- invalid number
+- insufficient payment
+
+Example:
+
+Total = ₱175
+Paid = ₱100
+
+Show:
+
+"Insufficient payment. Please enter at least ₱175.00."
+
+Do not create any transaction.
+
+Example:
+
+Total = ₱140
+Paid = ₱200
+
+Change = ₱60.00
+
+Example:
+
+Total = ₱140
+Paid = ₱140
+
+Change = ₱0.00
+
+Prevent duplicate payment clicks.
+
+==================================================
+QR PAYMENT
+==================================================
+
+Title:
+
+QR Payment
+
+Display:
+
+Amount to Pay
+
+Create a modern QR placeholder using HTML/CSS/SVG.
+
+Do not require a real payment gateway.
+
+Instructions:
+
+1. Open your payment application.
+2. Scan the QR code.
+3. Confirm the displayed amount.
+
+Button:
+
+Confirm Payment
+
+This is a simulated payment.
+
+On successful confirmation:
+amountPaid = total
+change = 0
+
+Then save the successful transaction to MySQL.
+
+==================================================
+CARD PAYMENT
+==================================================
+
+Title:
+
+Credit / Debit Card
+
+Display:
+
+Amount Due
+
+Instruction:
+
+"Please tap, insert, or swipe your card."
+
+Button:
+
+Process Payment
+
+After clicking:
+
+Show an approximately 2-second animated state:
+
+"Processing payment..."
+
+During processing:
+- disable buttons
+- prevent duplicate clicks
+- prevent navigation
+- prevent duplicate transactions
+
+Then show successful payment.
+
+Use:
+
+amountPaid = total
+change = 0
+
+Save transaction to MySQL.
+
+Do NOT collect real:
+- card numbers
+- CVV
+- PIN
+- payment credentials
+
+==================================================
+PAYMENT SUCCESS
+==================================================
+
+Show a polished animated green checkmark.
+
+Title:
+
+Payment Successful
+
+Message:
+
+"Transaction completed successfully. Thank you!"
+
+Display:
+- Transaction Number
+- Payment Method
+- Transaction Amount
+- Amount Paid
+- Change
+
+Button:
+
+View Receipt
+
+==================================================
+RECEIPT
+==================================================
+
+Create a professional digital receipt.
+
+Header:
+
+CAMPUS STORE POS
+Official Digital Receipt
+
+Show:
+- transaction number
+- date
+- time
+
+Items:
+- product
+- quantity
+- unit price
+- subtotal
+
+Show:
+Total
+Payment Method
+Amount Paid
+Change
+Payment Status
+
+Status:
+
+Payment Successful
+
+Footer:
+
+Thank you for your purchase!
+
+Buttons:
+New Transaction
+Print Receipt
+
+==================================================
+PRINTING
+==================================================
+
+Use:
+
+window.print()
+
+Create a print stylesheet.
+
+When printing, only the receipt should appear.
+
+Hide:
+- header
+- navigation
+- product grid
+- cart
+- payment controls
+- buttons
+- toasts
+- unnecessary UI
+
+The printed receipt must be clean and professional.
+
+==================================================
+NEW TRANSACTION
+==================================================
+
+When New Transaction is clicked, clear:
+- cart
+- selected category
+- payment method
+- amount paid
+- change
+- current transaction
+- receipt
+- payment processing state
+- success state
+- total
+
+Return to product selection.
+
+Show:
+
+"New transaction started — previous order cleared"
+
+Do NOT delete previous successful transactions from MySQL.
+
+==================================================
+TRANSACTION NUMBERS
+==================================================
+
+Use format:
+
+TXN-YYYY-00001
+
+Examples:
+
+TXN-2026-00001
+TXN-2026-00002
+TXN-2026-00003
+
+Transaction numbers MUST be unique.
+
+Use the database to guarantee uniqueness.
+
+Only successful payments create transaction numbers.
+
+Failed or incomplete payments must not create transaction records.
+
+Use a database-safe approach that prevents duplicates during concurrent requests.
+
+==================================================
+ANIMATIONS
+==================================================
+
+The application MUST use JavaScript/TypeScript-driven UI micro-interactions.
+
+Implement:
+- product press animation
+- selected product animation
+- quantity increment animation
+- quantity decrement animation
+- cart item add animation
+- cart item removal animation
+- total transition
+- toast slide/fade
+- screen transition
+- payment method selection
+- cash validation animation
+- card processing animation
+- QR confirmation animation
+- success checkmark animation
+- receipt entrance animation
+- loading states
+- button press feedback
+
+Animation duration generally:
+150–300ms
+
+Card processing:
+approximately 2 seconds
+
+Respect:
+
+prefers-reduced-motion
+
+Do not overanimate the interface.
+
+==================================================
+RESPONSIVE DESIGN
+==================================================
+
+Primary target:
+
+1024 × 768 tablet landscape.
+
+Also support:
+- desktop
+- tablet
+- mobile
+
+Desktop/tablet:
+Product catalog on left
+Order panel on right
+
+Mobile:
+Products
+↓
+Order
+
+No horizontal scrolling.
+
+No clipped content.
+
+No broken buttons.
+
+==================================================
+TOUCHSCREEN
+==================================================
+
+Minimum touch target:
+56px
+
+Primary buttons:
+64px or larger
+
+Numeric keypad buttons:
+large
+
+Payment method cards:
+large
+
+Use:
+
+touch-action: manipulation;
+
+Prevent accidental double-tap zoom where appropriate.
+
+Do not use tiny controls.
+
+==================================================
+ACCESSIBILITY
+==================================================
+
+Use semantic HTML.
+
+Use actual `<button>` elements.
+
+Icon-only buttons need aria-labels.
+
+Examples:
+"Increase Coffee quantity"
+"Decrease Coffee quantity"
+"Remove Coffee"
+
+Use aria-live for notifications and errors.
+
+Support keyboard navigation.
+
+Provide visible focus states.
+
+Do not rely only on color to communicate state.
+
+==================================================
+SECURITY
+==================================================
+
+Never expose database credentials to client code.
+
+Never connect directly from browser to MySQL.
+
+Never trust client totals or prices.
+
+Always retrieve prices from MySQL on the server.
+
+Never store real payment credentials.
+
+Never include secrets in the repository.
+
+==================================================
+README
+==================================================
+
+Create a professional `README.md`.
+
+Include:
+
+# Campus Store – Self-Service POS Kiosk
+
+IT415 Practical Examination
+
+Developers:
+1. Michael Angelo Acera
+2. Isaiah Jairo C. Martinez
+3. Cyril Dwyne R. Pasa
+4. Angela Faiht N. Misoles
+
+Do not invent roles or contributions. Use TBD where necessary.
+
+README sections:
+1. Project Description
+2. Objectives
+3. Features
+4. Technology Stack
+5. System Architecture
+6. Database
+7. XAMPP Setup
+8. phpMyAdmin Setup
+9. Prisma Setup
+10. Environment Variables
+11. Local Development
+12. Application Flow
+13. Payment Simulation
+14. UI/UX
+15. Accessibility
+16. Testing
+17. Vercel Deployment
+18. Limitations
+19. Folder Structure
+20. Group Contributions
+
+Explain exactly how to run:
+
+npm install
+
+Start XAMPP MySQL.
+
+Create:
+
+it415_pos_kiosk
+
+Then configure DATABASE_URL.
+
+Run:
+
+npx prisma migrate dev
+npx prisma db seed
+npm run dev
+
+Explain how to open the local application.
+
+Explain that XAMPP is for local development/practical examination and a public MySQL-compatible database is required for Vercel production.
+
+==================================================
+AI_LOG
+==================================================
+
+Create:
+
+AI_LOG.md
+
+Use columns:
+
+Date
+Member
+Prompt
+AI Response Summary
+My Evaluation
+My Modification
+
+First entry:
+
+Date:
+2026-10-06
+
+Prompt:
+The prompt used to generate this project.
+
+AI Response Summary:
+AI was instructed to build the complete Next.js touchscreen POS kiosk using Prisma, MySQL/XAMPP, modern minimalist UI/UX, JavaScript/TypeScript animations, simulated payments, transaction management, receipts, testing, documentation, and deployment preparation.
+
+My Evaluation:
+TBD
+
+My Modification:
+TBD
+
+Do not fabricate evaluation or modifications.
+
+Create placeholder entries for the other developers without inventing their work.
+
+==================================================
+TESTING
+==================================================
+
+Actually test the application as much as the environment allows.
+
+Do NOT simply claim that something passed if it was not tested.
+
+Test this exact scenario:
+
+Coffee ×2
+Sandwich ×1
+Soft Drink ×1
+
+Expected:
+Coffee = ₱90
+Sandwich = ₱50
+Soft Drink = ₱35
+Total = ₱175
+
+Then:
+
+Coffee 2 → 3
+
+Expected:
+Coffee = ₱135
+Total = ₱220
+
+Then:
+
+Coffee 3 → 2
+
+Expected:
+Total = ₱175
+
+Remove Soft Drink.
+
+Expected:
+Total = ₱140
+
+Back from review.
+
+Expected:
+Cart remains unchanged.
+
+Cash:
+
+Total = ₱140
+Paid = ₱100
+
+Expected:
+Payment rejected.
+No transaction.
+No receipt.
+
+Cash:
+
+Total = ₱140
+Paid = ₱200
+
+Expected:
+Payment succeeds.
+Change = ₱60.
+
+Cash:
+
+Total = ₱140
+Paid = ₱140
+
+Expected:
+Payment succeeds.
+Change = ₱0.
+
+QR:
+Successful simulated payment.
+Amount paid = total.
+Change = ₱0.
+
+Card:
+Successful simulated payment.
+Amount paid = total.
+Change = ₱0.
+
+Receipt:
+Must show all transaction information.
+
+New Transaction:
+Cart must be empty.
+Previous transactions remain in database.
+
+Complete two successful transactions:
+Transaction numbers must be different.
+
+Also test:
+- empty cart
+- category filtering
+- quantity 99
+- quantity 100 rejection
+- quantity never negative
+- remove item
+- back navigation
+- duplicate payment click
+- card processing
+- QR confirmation
+- cash keypad
+- clear
+- backspace
+- exact payment
+- insufficient payment
+- receipt print
+- new transaction
+- database saving
+- failed payment creates no transaction
+- successful payment creates exactly one transaction
+- historical item price preservation
+- responsive design
+- accessibility
+- browser refresh
+- invalid server requests
+
+==================================================
+DATABASE QA
+==================================================
+
+Verify:
+
+Failed payment:
+0 transaction records created.
+
+Successful payment:
+exactly 1 transaction created.
+
+Transaction items:
+correct.
+
+Stored total:
+correct.
+
+Payment method:
+correct.
+
+Amount paid:
+correct.
+
+Change:
+correct.
+
+Transaction number:
+unique.
+
+Historical product name and price:
+preserved.
+
+Double-clicking payment:
+cannot create duplicate transactions.
+
+==================================================
+CODE QUALITY
+==================================================
+
+The project must have:
+- clean TypeScript
+- reusable components
+- modular code
+- clear naming
+- no unnecessary duplication
+- no unused imports
+- no unused variables
+- no dead CSS
+- no unnecessary console.log
+- no obvious TypeScript errors
+- no obvious runtime errors
+
+Run the available lint/type/build checks.
+
+Fix errors before packaging.
+
+==================================================
+GIT / DEVOPS
+==================================================
+
+Do not fabricate Git history.
+
+Do not create fake commits, branches, pull requests, reviews, usernames, or contributions.
+
+The actual team will create Git history themselves.
+
+==================================================
+FINAL REVIEW
+==================================================
+
+Before packaging, inspect the entire project and verify:
+
+- imports work
+- routes work
+- components work
+- database schema works
+- Prisma works
+- seed works
+- MySQL/XAMPP connection works
+- product selection works
+- cart works
+- quantity works
+- review works
+- payment works
+- cash validation works
+- QR simulation works
+- card simulation works
+- transactions save correctly
+- transaction numbers are unique
+- receipt works
+- print works
+- New Transaction works
+- animations work
+- responsive layout works
+- accessibility works
+- no secrets are included
+- `.env.example` exists
+- README exists
+- AI_LOG.md exists
+
+==================================================
+ZIP PACKAGE
+==================================================
+
+After the project is complete and tested, create exactly ONE ZIP archive:
+
+`it415-pos-kiosk-Practical-Exam.zip`
+
+The ZIP MUST contain the complete source project.
+
+Include:
+- app/
+- components/
+- lib/
+- prisma/
+- public/
+- types/
+- package.json
+- README.md
+- AI_LOG.md
+- .env.example
+- .gitignore
+- Next.js configuration
+- TypeScript configuration
+- all required source files
+
+DO NOT include:
+- node_modules/
+- .next/
+- .git/
+- .env
+- .env.local
+- passwords
+- credentials
+- secrets
+- cache
+- temporary files
+- unnecessary editor files
+
+The ZIP must be extractable and ready for another developer to:
+
+1. Extract the project.
+2. Run `npm install`.
+3. Start XAMPP MySQL.
+4. Create `it415_pos_kiosk`.
+5. Configure DATABASE_URL.
+6. Run Prisma migration.
+7. Run Prisma seed.
+8. Run `npm run dev`.
+9. Open the application.
+
+==================================================
+CRITICAL FINAL INSTRUCTION
+==================================================
+
+DO NOT stop after generating code.
+
+DO NOT only describe what you would build.
+
+ACTUALLY CREATE THE PROJECT.
+
+ACTUALLY IMPLEMENT THE FEATURES.
+
+ACTUALLY TEST THE PROJECT AS MUCH AS POSSIBLE.
+
+ACTUALLY FIX ERRORS.
+
+ACTUALLY CREATE THE ZIP FILE.
+
+The final ZIP MUST be:
+
+`it415-pos-kiosk-Practical-Exam.zip`
+
+When everything is finished, the final response must be very short.
+
+Do not paste the source code.
+
+Do not give me multiple ZIP files.
+
+Do not give me a long explanation.
+
+Simply state that the project is complete and provide the actual downloadable ZIP file.
+
+Example final response:
+
+"Done — the complete IT415 POS Kiosk project has been built, tested, and packaged."
+
+Then provide the actual `it415-pos-kiosk-Practical-Exam.zip` download link.
+
+DO NOT CLAIM THE PROJECT IS COMPLETE UNTIL THE ZIP FILE ACTUALLY EXISTS.

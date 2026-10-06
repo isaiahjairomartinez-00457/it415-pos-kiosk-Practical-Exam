@@ -1,0 +1,63 @@
+ it415-pos-kiosk-Practical-Exam/.env.example        |    4 [32m+[m
+ it415-pos-kiosk-Practical-Exam/.eslintrc.json      |    1 [32m+[m
+ it415-pos-kiosk-Practical-Exam/.gitignore          |   20 [32m+[m
+ it415-pos-kiosk-Practical-Exam/AI_LOG.md           |   17 [32m+[m
+ it415-pos-kiosk-Practical-Exam/README.md           |  287 [32m+[m
+ .../app/api/checkout/route.ts                      |   32 [32m+[m
+ .../api/transactions/[transactionNumber]/route.ts  |   24 [32m+[m
+ it415-pos-kiosk-Practical-Exam/app/globals.css     |  190 [32m+[m
+ it415-pos-kiosk-Practical-Exam/app/icon.svg        |    1 [32m+[m
+ it415-pos-kiosk-Practical-Exam/app/layout.tsx      |   21 [32m+[m
+ it415-pos-kiosk-Practical-Exam/app/not-found.tsx   |   15 [32m+[m
+ it415-pos-kiosk-Practical-Exam/app/page.tsx        |   37 [32m+[m
+ .../components/CardPayment.tsx                     |   93 [32m+[m
+ .../components/CashPayment.tsx                     |  189 [32m+[m
+ .../components/Header.tsx                          |   60 [32m+[m
+ .../components/KioskApp.tsx                        |  211 [32m+[m
+ .../components/MenuSidebar.tsx                     |   77 [32m+[m
+ .../components/OrderPanel.tsx                      |  190 [32m+[m
+ .../components/OrderScreen.tsx                     |   70 [32m+[m
+ .../components/PaymentMethodScreen.tsx             |   71 [32m+[m
+ .../components/ProductCard.tsx                     |   70 [32m+[m
+ .../components/QrPayment.tsx                       |   93 [32m+[m
+ .../components/ReceiptScreen.tsx                   |   95 [32m+[m
+ .../components/ReviewScreen.tsx                    |   72 [32m+[m
+ .../components/SuccessScreen.tsx                   |   44 [32m+[m
+ .../components/Toast.tsx                           |   36 [32m+[m
+ .../components/icons.tsx                           |  224 [32m+[m
+ .../docs/AI_PROMPT_01_build-project.txt            | 1261 [32m++++[m
+ it415-pos-kiosk-Practical-Exam/lib/cart.ts         |   51 [32m+[m
+ it415-pos-kiosk-Practical-Exam/lib/checkout.ts     |  130 [32m+[m
+ it415-pos-kiosk-Practical-Exam/lib/constants.ts    |   25 [32m+[m
+ it415-pos-kiosk-Practical-Exam/lib/hooks.ts        |   57 [32m+[m
+ it415-pos-kiosk-Practical-Exam/lib/id.ts           |   13 [32m+[m
+ it415-pos-kiosk-Practical-Exam/lib/kioskState.ts   |   73 [32m+[m
+ it415-pos-kiosk-Practical-Exam/lib/money.ts        |   17 [32m+[m
+ it415-pos-kiosk-Practical-Exam/lib/prisma.ts       |   33 [32m+[m
+ .../lib/productImages.ts                           |   18 [32m+[m
+ it415-pos-kiosk-Practical-Exam/lib/validation.ts   |   95 [32m+[m
+ it415-pos-kiosk-Practical-Exam/next.config.ts      |    8 [32m+[m
+ it415-pos-kiosk-Practical-Exam/package-lock.json   | 7543 [32m++++++++++++++++++++[m
+ it415-pos-kiosk-Practical-Exam/package.json        |   42 [32m+[m
+ it415-pos-kiosk-Practical-Exam/postcss.config.mjs  |    5 [32m+[m
+ .../migrations/20261006000000_init/migration.sql   |   59 [32m+[m
+ .../prisma/migrations/migration_lock.toml          |    3 [32m+[m
+ .../prisma/schema.prisma                           |   60 [32m+[m
+ it415-pos-kiosk-Practical-Exam/prisma/seed.ts      |   51 [32m+[m
+ .../public/images/products/atchara.jpg             |  Bin [31m0[m -> [32m107587[m bytes
+ .../public/images/products/chicken-inasal-rice.jpg |  Bin [31m0[m -> [32m97769[m bytes
+ .../public/images/products/chicken-inasal.jpg      |  Bin [31m0[m -> [32m50053[m bytes
+ .../public/images/products/halo-halo.jpg           |  Bin [31m0[m -> [32m75329[m bytes
+ .../public/images/products/iced-tea.jpg            |  Bin [31m0[m -> [32m82438[m bytes
+ .../public/images/products/java-rice.jpg           |  Bin [31m0[m -> [32m117612[m bytes
+ .../public/images/products/pork-bbq-meal.jpg       |  Bin [31m0[m -> [32m210974[m bytes
+ it415-pos-kiosk-Practical-Exam/public/robots.txt   |    2 [32m+[m
+ it415-pos-kiosk-Practical-Exam/tailwind.config.ts  |   32 [32m+[m
+ it415-pos-kiosk-Practical-Exam/tests/cart.test.ts  |   50 [32m+[m
+ .../tests/db/checkout.test.ts                      |  139 [32m+[m
+ it415-pos-kiosk-Practical-Exam/tests/money.test.ts |   20 [32m+[m
+ .../tests/validation.test.ts                       |   55 [32m+[m
+ it415-pos-kiosk-Practical-Exam/tsconfig.json       |   21 [32m+[m
+ it415-pos-kiosk-Practical-Exam/types/globals.d.ts  |    1 [32m+[m
+ it415-pos-kiosk-Practical-Exam/types/index.ts      |   44 [32m+[m
+ 62 files changed, 12152 insertions(+)
