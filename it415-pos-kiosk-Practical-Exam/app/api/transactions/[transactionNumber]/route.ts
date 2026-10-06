@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { findReceipt } from "@/lib/checkout";
-import { prisma } from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
 
@@ -12,7 +11,7 @@ export async function GET(_request: Request, context: { params: Promise<{ transa
     return NextResponse.json({ ok: false, error: "Invalid transaction number.", code: "INVALID_NUMBER" }, { status: 400 });
   }
   try {
-    const receipt = await findReceipt(prisma, transactionNumber);
+    const receipt = await findReceipt(transactionNumber);
     if (!receipt) {
       return NextResponse.json({ ok: false, error: "Transaction not found.", code: "NOT_FOUND" }, { status: 404 });
     }

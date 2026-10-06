@@ -12,7 +12,7 @@ function normalizeProductName(productName: string) {
   return productName.trim().replace(/\s+/g, " ").toLowerCase();
 }
 
-/** Resolves the real product artwork from the product's database name. */
+/** Resolves the real product artwork from the product's menu name. */
 export function getProductImage(productName: string): string | undefined {
   return PRODUCT_IMAGES[normalizeProductName(productName)];
 }

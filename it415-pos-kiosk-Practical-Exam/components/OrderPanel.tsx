@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { ArrowRightIcon, CartIcon, MinusIcon, PlusIcon, ProductIcon, TrashIcon } from "@/components/icons";
 import { cartCount, cartTotal, lineSubtotal } from "@/lib/cart";
 import { useAnimatedNumber, usePrefersReducedMotion, usePrevious } from "@/lib/hooks";
@@ -133,10 +134,11 @@ function CartRow({ product, quantity, leaving, onIncrement, onDecrement, onRemov
             {!image || imageFailed ? (
               <ProductIcon name={product.icon} size={28} />
             ) : (
-              <img
+              <Image
                 src={image}
                 alt={`${product.name} product photo`}
-                loading="lazy"
+                fill
+                sizes="56px"
                 className="absolute inset-0 h-full w-full object-cover"
                 onError={() => setImageFailed(true)}
               />

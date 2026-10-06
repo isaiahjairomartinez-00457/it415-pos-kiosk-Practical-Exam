@@ -5,23 +5,13 @@
   "description": "MANG INASAL-inspired Self-Service POS Kiosk (IT415 Practical Examination)",
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test tests/*.test.ts",
-    "db:migrate": "prisma migrate dev",
-    "db:deploy": "prisma migrate deploy",
-    "db:seed": "prisma db seed",
-    "postinstall": "prisma generate",
-    "test:db": "tsx --env-file=.env --test tests/db/*.test.ts"
-  },
-  "prisma": {
-    "seed": "tsx prisma/seed.ts"
+    "test": "tsx --test tests/*.test.ts"
   },
   "dependencies": {
-    "@prisma/adapter-mariadb": "^6.19.3",
-    "@prisma/client": "^6.19.3",
     "next": "^15.5.27",
     "react": "^19.3.0",
     "react-dom": "^19.3.0"
@@ -34,7 +24,6 @@
     "eslint": "^8.57.1",
     "eslint-config-next": "^15.5.27",
     "postcss": "^8.5.29",
-    "prisma": "^6.19.3",
     "tailwindcss": "^3.4.19",
     "tsx": "^4.23.15",
     "typescript": "^6.0.3"

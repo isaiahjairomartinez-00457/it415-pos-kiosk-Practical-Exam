@@ -36,7 +36,7 @@ export function SuccessScreen({ receipt, onViewReceipt }: { receipt: Receipt; on
           <ReceiptIcon size={24} /> View Receipt
         </button>
         <p className="mt-3 flex items-center justify-center gap-1 text-sm text-ink-muted">
-          <CheckIcon size={16} className="text-success" /> Saved to the database
+          <CheckIcon size={16} className="text-success" /> Saved to kiosk records
         </p>
       </div>
     </div>

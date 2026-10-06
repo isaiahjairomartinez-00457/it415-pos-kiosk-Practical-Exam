@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Image from "next/image";
 import { PRODUCT_TONES, ProductIcon } from "@/components/icons";
 import { usePrevious } from "@/lib/hooks";
 import { formatMoney } from "@/lib/money";
@@ -38,10 +39,11 @@ export function ProductCard({ product, quantity, onAdd }: ProductCardProps) {
           {!image || imageFailed ? (
             <ProductIcon name={product.icon} size={58} className="product-glyph relative z-10" strokeWidth={2.1} />
           ) : (
-            <img
+            <Image
               src={image}
               alt={`${product.name} product photo`}
-              loading="lazy"
+              fill
+              sizes="(min-width: 1024px) 220px, 45vw"
               className="absolute inset-0 z-10 h-full w-full object-cover"
               onError={() => setImageFailed(true)}
             />

@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { processCheckout } from "@/lib/checkout";
-import { prisma } from "@/lib/prisma";
 import { parseCheckoutRequest, ValidationError } from "@/lib/validation";
 
 export const dynamic = "force-dynamic";
@@ -19,7 +18,7 @@ export async function POST(request: Request) {
 
   try {
     const checkout = parseCheckoutRequest(body);
-    const receipt = await processCheckout(prisma, checkout);
+    const receipt = await processCheckout(checkout);
     return NextResponse.json({ ok: true, data: receipt });
   } catch (error) {
     if (error instanceof ValidationError) {
