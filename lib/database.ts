@@ -68,8 +68,8 @@ async function readDatabase(): Promise<KioskDatabase> {
   let raw: string;
   try {
     raw = await fs.readFile(DATA_PATH, "utf8");
-  } catch (error: any) {
-    if (error.code === "ENOENT" && IS_VERCEL) {
+  } catch (error: unknown) {
+    if (isMissingFileError(error) && IS_VERCEL) {
       raw = await fs.readFile(INITIAL_DATA_PATH, "utf8");
     } else {
       throw error;
@@ -82,6 +82,10 @@ async function readDatabase(): Promise<KioskDatabase> {
     transactions: Array.isArray(parsed.transactions) ? parsed.transactions : [],
     yearCounters: parsed.yearCounters && typeof parsed.yearCounters === "object" ? parsed.yearCounters : {},
   };
+}
+
+function isMissingFileError(error: unknown): boolean {
+  return error instanceof Error && "code" in error && error.code === "ENOENT";
 }
 
 async function writeDatabase(db: KioskDatabase): Promise<void> {

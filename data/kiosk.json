@@ -134,9 +134,30 @@
           "subtotal": 9900
         }
       ]
+    },
+    {
+      "id": 5,
+      "transactionNumber": "TXN-2026-00005",
+      "idempotencyKey": "fe9f633d-91af-45b4-869c-9466623bda6e",
+      "totalAmount": 9900,
+      "paymentMethod": "CASH",
+      "amountPaid": 80800,
+      "changeAmount": 70900,
+      "status": "SUCCESS",
+      "createdAt": "2026-10-07T01:38:01.562Z",
+      "items": [
+        {
+          "id": 1,
+          "productId": 1,
+          "productName": "Chicken Inasal",
+          "quantity": 1,
+          "unitPrice": 9900,
+          "subtotal": 9900
+        }
+      ]
     }
   ],
   "yearCounters": {
-    "2026": 4
+    "2026": 5
   }
 }
